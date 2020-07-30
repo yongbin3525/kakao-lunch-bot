@@ -1,0 +1,25 @@
+{
+  "name": "smc_lunch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "^4.17.1",
+    "k-lunch": "^1.1.1",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
+    "morgan": "^1.10.0",
+    "node-school-kr": "^2.2.2",
+    "school-kr": "^3.1.1"
+  },
+  "devDependencies": {
+    "moment-timezone": "^0.5.31"
+  }
+}
