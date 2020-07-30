@@ -48,7 +48,7 @@ apiRouter.get('/test', function (req, res) {
 });
 apiRouter.post('/today', function(req, res) {
     getDate();
-    let str = meal.today==null ? "급식이 없습니다":meal.today;
+    let str = meal[day]==null ? "급식이 없습니다":meal[day];
     const responseBody = {
         version: "2.0",
         template: {
