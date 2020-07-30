@@ -11,11 +11,13 @@ moment.tz.setDefault("Asia/Seoul");
 let year;
 let month;
 let day;
+let se;
 const getDate = () => {
     let date = moment();
     year = date.format('YYYY');
     month = date.format('MM');
     day = date.format('DD');
+    se = date.format('ss');
 };
 let meal = "";
 const example = async function() {
@@ -46,13 +48,14 @@ apiRouter.get('/test', function (req, res) {
 });
 apiRouter.post('/today', function(req, res) {
     getDate();
+    let str = meal.today==null ? "급식이 없습니다":meal.today;
     const responseBody = {
         version: "2.0",
         template: {
             outputs: [
                 {
                     simpleText: {
-                        text: '오늘 급식\n'+meal.today
+                        text: '오늘 급식\n'+str
                     }
                 }
             ]
@@ -65,13 +68,14 @@ apiRouter.post('/today', function(req, res) {
 apiRouter.post('/tomorrow', function(req, res) {
     getDate();
     var day = moment().add(1,'days').format('DD');
+    let str = meal[day]==null ? "급식이 없습니다":meal[day];
     const responseBody = {
         version: "2.0",
         template: {
             outputs: [
                 {
                     simpleText: {
-                        text: '내일 급식\n'+meal[day]
+                        text: '내일 급식\n'+str
                     }
                 }
             ]
@@ -82,13 +86,14 @@ apiRouter.post('/tomorrow', function(req, res) {
 });
 
 apiRouter.post('/info', function(req, res) {
+    getDate();
     const responseBody = {
         version: "2.0",
         template: {
             outputs: [
                 {
                     simpleText: {
-                        text: '세명컴고 급식봇\n개발:30114 이용빈'
+                        text: '세명컴고 급식봇\n개발:30114 이용빈\n오늘날짜 : '+month+'/'+day+'/'+se
                     }
                 }
             ]
