@@ -93,7 +93,7 @@ apiRouter.post('/info', function(req, res) {
             outputs: [
                 {
                     simpleText: {
-                        text: '세명컴고 급식봇\n개발:30114 이용빈\n오늘날짜 : '+month+'/'+day+'/'+se
+                        text: '세명컴고 급식봇\n개발:30114 이용빈'
                     }
                 }
             ]
