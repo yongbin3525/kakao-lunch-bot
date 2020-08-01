@@ -23,13 +23,15 @@ let meal = "";
 const example = async function() {
     school.init(School.Type.HIGH, School.Region.SEOUL, 'B100000659');
 
-    meal = await school.getMeal({
+     meal = await school.getMeal({
         year: year,
         month: month,
         default: '급식이 없습니다'
     });
+
 };
 example();
+
 
 const apiRouter = express.Router();
 
@@ -48,6 +50,7 @@ apiRouter.get('/test', function (req, res) {
 });
 apiRouter.post('/today', function(req, res) {
     getDate();
+    if(Number(day)<10) day = day.substring(1);
     let str = meal[day]==null ? "급식이 없습니다":meal[day];
     const responseBody = {
         version: "2.0",
@@ -67,22 +70,41 @@ apiRouter.post('/today', function(req, res) {
 
 apiRouter.post('/tomorrow', function(req, res) {
     getDate();
-    var day = moment().add(1,'days').format('DD');
-    let str = meal[day]==null ? "급식이 없습니다":meal[day];
-    const responseBody = {
-        version: "2.0",
-        template: {
-            outputs: [
-                {
-                    simpleText: {
-                        text: '내일 급식\n'+str
+    var day1 = moment().add(1,'days').format('DD');
+    if(Number(day1)-Number(day)!==1){
+        const responseBody = {
+            version: "2.0",
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: '내일은 달이 달라져서 지원되지 않습니다'
+                        }
                     }
-                }
-            ]
-        }
-    };
+                ]
+            }
+        };
 
-    res.status(200).send(responseBody);
+        res.status(200).send(responseBody);
+
+    }else {
+        if (Number(day1) < 10) day1 = day1.substring(1);
+        let str = meal[day1] == null ? "급식이 없습니다" : meal[day1];
+        const responseBody = {
+            version: "2.0",
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: '내일 급식\n' + str
+                        }
+                    }
+                ]
+            }
+        };
+
+        res.status(200).send(responseBody);
+    }
 });
 
 apiRouter.post('/info', function(req, res) {
