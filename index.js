@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const School = require('node-school-kr');
+const School = require('school-kr');
 const school = new School();
 var moment = require('moment');
 require('moment-timezone');
