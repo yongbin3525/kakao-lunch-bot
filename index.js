@@ -21,6 +21,7 @@ const getDate = () => {
 };
 let meal = "";
 const example = async function() {
+    getDate();
     school.init(School.Type.HIGH, School.Region.SEOUL, 'B100000659');
 
      meal = await school.getMeal({
