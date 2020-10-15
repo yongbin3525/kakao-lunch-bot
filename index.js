@@ -53,6 +53,7 @@ apiRouter.post('/today', function(req, res) {
     getDate();
     if(Number(day)<10) day = day.substring(1);
     let str = meal[day]==null ? "급식이 없습니다":meal[day];
+    str = str.replace("&amp;","\n");
     const responseBody = {
         version: "2.0",
         template: {
@@ -91,6 +92,7 @@ apiRouter.post('/tomorrow', function(req, res) {
     }else {
         if (Number(day1) < 10) day1 = day1.substring(1);
         let str = meal[day1] == null ? "급식이 없습니다" : meal[day1];
+        str = str.replace("&amp;","\n");
         const responseBody = {
             version: "2.0",
             template: {
