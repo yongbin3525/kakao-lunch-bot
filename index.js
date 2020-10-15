@@ -60,7 +60,7 @@ apiRouter.post('/today', function(req, res) {
             outputs: [
                 {
                     simpleText: {
-                        text: '오늘 급식\n'+str
+                        text: str
                     }
                 }
             ]
@@ -99,7 +99,7 @@ apiRouter.post('/tomorrow', function(req, res) {
                 outputs: [
                     {
                         simpleText: {
-                            text: '내일 급식\n' + str
+                            text: str
                         }
                     }
                 ]
