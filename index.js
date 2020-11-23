@@ -80,7 +80,7 @@ apiRouter.post('/tomorrow', function(req, res) {
                 outputs: [
                     {
                         simpleText: {
-                            text: '내일은 달이 달라져서 지원되지 않습니다'
+                            text: '내일급식은 달이 달라져서 지원되지 않습니다'
                         }
                     }
                 ]
@@ -118,7 +118,7 @@ apiRouter.post('/info', function(req, res) {
             outputs: [
                 {
                     simpleText: {
-                        text: '세명컴고 급식봇\n개발:30114 이용빈'
+                        text: '세명컴고 급식봇\n개발: ???'
                     }
                 }
             ]
