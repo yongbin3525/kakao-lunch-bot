@@ -49,12 +49,16 @@ example();
 
 
 const apiRouter = express.Router();
-app.use(allowCrossDomain);
-app.use(logger('dev', {}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+
+app.configure(function () {
+  app.use(allowCrossDomain);
+  app.use(logger('dev', {}));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({
     extended: true
-}));
+  }));
+});
+
 
 app.use('/api', apiRouter);
 
