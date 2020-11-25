@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -37,8 +36,6 @@ example();
 
 const apiRouter = express.Router();
 
-
-app.use(cors());
 app.use(logger('dev', {}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
