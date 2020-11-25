@@ -49,6 +49,27 @@ app.use('/api', apiRouter);
 apiRouter.get('/test', function (req, res) {
     res.send('Hello');
 });
+apiRouter.get('/today', function(req, res) {
+    getDate();
+    if(Number(day)<10) day = day.substring(1);
+    let str = meal[day]==null ? "급식이 없습니다":meal[day];
+    str = str.replace("&amp;","\n");
+    const responseBody = {
+        version: "2.0",
+        template: {
+            outputs: [
+                {
+                    simpleText: {
+                        text: str
+                    }
+                }
+            ]
+        }
+    };
+
+    res.status(200).send(responseBody);
+});
+
 apiRouter.post('/today', function(req, res) {
     getDate();
     if(Number(day)<10) day = day.substring(1);
@@ -71,6 +92,46 @@ apiRouter.post('/today', function(req, res) {
 });
 
 apiRouter.post('/tomorrow', function(req, res) {
+    getDate();
+    var day1 = moment().add(1,'days').format('DD');
+    if(Number(day1)-Number(day)!==1){
+        const responseBody = {
+            version: "2.0",
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: '내일급식은 달이 달라져서 지원되지 않습니다'
+                        }
+                    }
+                ]
+            }
+        };
+
+        res.status(200).send(responseBody);
+
+    }else {
+        if (Number(day1) < 10) day1 = day1.substring(1);
+        let str = meal[day1] == null ? "급식이 없습니다" : meal[day1];
+        str = str.replace("&amp;","\n");
+        const responseBody = {
+            version: "2.0",
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: str
+                        }
+                    }
+                ]
+            }
+        };
+
+        res.status(200).send(responseBody);
+    }
+});
+
+apiRouter.get('/tomorrow', function(req, res) {
     getDate();
     var day1 = moment().add(1,'days').format('DD');
     if(Number(day1)-Number(day)!==1){
