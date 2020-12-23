@@ -4,7 +4,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const School = require('school-kr');
 const school = new School();
-import krx from 'krx-stock-api';
+const krx = require('krx-stock-api');
 const moment = require('moment');
 require('moment-timezone');
 moment.tz.setDefault("Asia/Seoul");
@@ -63,7 +63,7 @@ apiRouter.get('/test', function (req, res) {
     res.send('Hello');
 });
 apiRouter.get('/stock', function(req, res) {
-    res.send(krx.getStock('009900').price);
+    console.log(krx.getStock('009900'));
 });
 apiRouter.get('/today', function(req, res) {
     getDate();
