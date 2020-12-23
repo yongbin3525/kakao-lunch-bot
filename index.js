@@ -64,6 +64,7 @@ apiRouter.get('/test', function (req, res) {
 });
 apiRouter.get('/stock', function(req, res) {
     res.send(krx.getStock('009900').price);
+});
 apiRouter.get('/today', function(req, res) {
     getDate();
     if(Number(day)<10) day = day.substring(1);
