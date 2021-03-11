@@ -192,7 +192,7 @@ apiRouter.post('/info', function(req, res) {
             outputs: [
                 {
                     simpleText: {
-                        text: '세명컴고 급식봇\n개발: 졸업생\n언제 서비스 '
+                        text: '세명컴고 급식봇\n개발: 졸업생\n '
                     }
                 }
             ]
